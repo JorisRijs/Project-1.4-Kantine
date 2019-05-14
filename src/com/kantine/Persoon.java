@@ -16,11 +16,15 @@ public class Persoon {
     }
 
     public Persoon(int BSN, String voornaam, String achternaam, Datum geboorteDatum, char geslacht){
+        if(geslacht == 'M' || geslacht == 'V'){
+            this.geslacht = geslacht;
+        } else {
+            this.geslacht = 'O';
+        }
         this.BSN = BSN;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.geboorteDatum = geboorteDatum;
-        this.geslacht = geslacht;
     }
 
 
@@ -74,5 +78,9 @@ public class Persoon {
         } else {
             System.out.println(geslacht + " is geen juist geslacht");
         }
+    }
+
+    public String toString(){
+        return(BSN + " " + voornaam + " " + achternaam + " " + getGeslacht() + " " + getGeboorteDatum());
     }
 }

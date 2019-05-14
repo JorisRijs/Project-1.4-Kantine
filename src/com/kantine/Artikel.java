@@ -1,19 +1,22 @@
 package src.com.kantine;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Artikel {
     private String naam;
     private BigDecimal prijs;
 
     public Artikel(){
-        this.naam = "";
-        this.prijs = new BigDecimal(0.0);
+        naam = "";
+        prijs = new BigDecimal(0.00);
     }
 
     public Artikel(String naam, BigDecimal prijs) {
+        this();
         this.naam = naam;
         this.prijs = prijs;
+        this.prijs = prijs.setScale(2, RoundingMode.HALF_UP);
     }
 
     public String getNaam(){
@@ -30,5 +33,9 @@ public class Artikel {
 
     public void setPrijs(BigDecimal prijs){
         this.prijs = prijs;
+    }
+
+    public String toString(){
+        return naam + " " + prijs;
     }
 }
