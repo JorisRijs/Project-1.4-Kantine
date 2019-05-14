@@ -1,3 +1,5 @@
+package src.com.kantine;
+
 import java.util.*;
 
 public class KantineAanbod {

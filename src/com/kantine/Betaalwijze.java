@@ -1,3 +1,5 @@
+package src.com.kantine;
+
 public abstract class Betaalwijze {
 
     protected double saldo;

@@ -1,3 +1,5 @@
+package src.com.kantine;
+
 public class Datum {
 
 	private int dag;

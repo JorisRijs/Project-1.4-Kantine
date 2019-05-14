@@ -1,4 +1,4 @@
-import java.util.Iterator;
+package src.com.kantine;
 
 public class Kassa {
 
