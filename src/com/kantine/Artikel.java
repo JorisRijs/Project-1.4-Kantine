@@ -5,18 +5,17 @@ import java.math.RoundingMode;
 
 public class Artikel {
     private String naam;
-    private BigDecimal prijs;
+    private double prijs;
 
     public Artikel(){
         naam = "";
-        prijs = new BigDecimal(0.00);
+        prijs = 0.00;
     }
 
-    public Artikel(String naam, BigDecimal prijs) {
+    public Artikel(String naam, double prijs) {
         this();
         this.naam = naam;
         this.prijs = prijs;
-        this.prijs = prijs.setScale(2, RoundingMode.HALF_UP);
     }
 
     public String getNaam(){
@@ -27,11 +26,11 @@ public class Artikel {
         this.naam = naam;
     }
 
-    public BigDecimal getPrijs(){
+    public double getPrijs(){
         return prijs;
     }
 
-    public void setPrijs(BigDecimal prijs){
+    public void setPrijs(double prijs){
         this.prijs = prijs;
     }
 

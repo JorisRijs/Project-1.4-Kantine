@@ -4,13 +4,23 @@ import java.math.BigDecimal;
 
 public class testClass {
     public static void main(String[] args){
-        Datum datum = new Datum(5, 5, 1995);
+        Datum datum = new Datum(5, 5, 2018);
         System.out.println(datum.getDatumAsString());
 
-        Persoon persoon = new Persoon();
+        Persoon persoon = new Persoon(5, "Henk", "Tattje", datum, 'M');
         System.out.println(persoon.toString());
 
-        Artikel artikel = new Artikel("test", new BigDecimal(2.99));
+        Artikel artikel = new Artikel("appel", 2.99);
+        Artikel artikel2 = new Artikel("een banaan", 9.99);
+        Artikel artikel3 = new Artikel("artikel", 1.50);
+        Artikel artikel4 = new Artikel("voedsel", 0.69);
         System.out.println(artikel.toString());
+
+        Dienblad dienblad = new Dienblad(persoon);
+        dienblad.voegToe(artikel);
+        dienblad.voegToe(artikel2);
+        dienblad.voegToe(artikel3);
+        dienblad.voegToe(artikel4);
+        System.out.println(dienblad.getAantalArtikelen() + " : " + dienblad.getTotaalPrijs());
     }
 }
