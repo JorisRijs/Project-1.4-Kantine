@@ -31,6 +31,10 @@ public class testClass {
         rij.sluitAchteraan(dienblad2);
 
         System.out.println(rij.eerstePersoonInRij().getTotaalPrijs());
-        System.out.println(rij.eerstePersoonInRij().getTotaalPrijs());
+        //System.out.println(rij.eerstePersoonInRij().getTotaalPrijs());
+
+        Kassa kassa = new Kassa(rij);
+        kassa.rekenAf(rij.eerstePersoonInRij());
+        System.out.println("In de kassa: " + kassa.hoeveelheidGeldInKassa());
     }
 }

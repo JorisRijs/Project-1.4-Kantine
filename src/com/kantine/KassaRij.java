@@ -19,7 +19,6 @@ public class KassaRij {
      */
     public void sluitAchteraan(Dienblad klant) {
         rij.add(klant);
-        System.out.println(klant.getTotaalPrijs());
     }
 
     /**
