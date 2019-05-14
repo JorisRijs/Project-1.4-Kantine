@@ -22,5 +22,15 @@ public class testClass {
         dienblad.voegToe(artikel3);
         dienblad.voegToe(artikel4);
         System.out.println(dienblad.getAantalArtikelen() + " : " + dienblad.getTotaalPrijs());
+
+        Dienblad dienblad2 = new Dienblad(persoon);
+        dienblad2.voegToe(artikel2);
+
+        KassaRij rij = new KassaRij();
+        rij.sluitAchteraan(dienblad);
+        rij.sluitAchteraan(dienblad2);
+
+        System.out.println(rij.eerstePersoonInRij().getTotaalPrijs());
+        System.out.println(rij.eerstePersoonInRij().getTotaalPrijs());
     }
 }
