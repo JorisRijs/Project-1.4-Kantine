@@ -28,7 +28,7 @@ public class Kantine {
      */
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
-            kassarij.erIsEenRij();
+            kassarij.eerstePersoonInRij();
             // omitted
         }
     }
