@@ -34,7 +34,9 @@ public class KantineSimulatie {
                 kantine.verwerkRijVoorKassa();
                 kantine.aantalArtikelen();
                 kantine.hoeveelheidGeldInKassa();
+                System.out.println(j);
             }
+
 
             //verwerk rij voor de kassa
 

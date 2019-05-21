@@ -14,7 +14,7 @@ public class testClass {
         Artikel artikel2 = new Artikel("een banaan", 9.99);
         Artikel artikel3 = new Artikel("artikel", 1.50);
         Artikel artikel4 = new Artikel("voedsel", 0.69);
-        System.out.println(artikel.toString());
+        System.out.println(artikel1.toString());
 
         Dienblad dienblad = new Dienblad(persoon);
         dienblad.voegToe(artikel1);
@@ -36,5 +36,8 @@ public class testClass {
         Kassa kassa = new Kassa(rij);
         kassa.rekenAf(rij.eerstePersoonInRij());
         System.out.println("In de kassa: " + kassa.hoeveelheidGeldInKassa());
+
+        KantineSimulatie KS = new KantineSimulatie();
+        KS.simuleer(7);
     }
 }
