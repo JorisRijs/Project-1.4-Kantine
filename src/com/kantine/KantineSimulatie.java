@@ -31,7 +31,9 @@ public class KantineSimulatie {
 
             //for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                //kantine.(...);
+                kantine.verwerkRijVoorKassa();
+                kantine.aantalArtikelen();
+                kantine.hoeveelheidGeldInKassa();
             }
 
             //verwerk rij voor de kassa
