@@ -2,6 +2,7 @@ package src.com.kantine;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
@@ -28,15 +29,6 @@ public class Dienblad {
         artikelen.add(artikel);
     }
 
-    /**
-     * Methode om aantal artikelen op dienblad te tellen
-     *
-     * @return Het aantal artikelen
-     */
-    public int getAantalArtikelen() {
-        return artikelen.size();
-    }
-
     public Persoon getKlant() {
         return klant;
     }
@@ -45,18 +37,9 @@ public class Dienblad {
         this.klant = klant;
     }
 
-    /**
-     * Methode om de totaalprijs van de artikelen
-     * op dienblad uit te rekenen
-     *
-     * @return De totaalprijs
-     */
-    public BigDecimal getTotaalPrijs() {
-        BigDecimal totaalPrijs = new BigDecimal(0.00);
-        for(int i=0; i<getAantalArtikelen(); i++){
-            totaalPrijs = totaalPrijs.add(artikelen.get(i).getPrijs());
-        }
-        return totaalPrijs;
+    public Iterator getArtikelen(){
+        Iterator<Artikel> artikelIterator = artikelen.iterator();
+        return artikelIterator;
     }
 }
 

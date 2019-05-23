@@ -35,9 +35,9 @@ public class KantineSimulatie {
             }
 
             kantine.verwerkRijVoorKassa();
-            System.out.println("Er zijn op dag " + i + " " + kantine.aantalArtikelen() + " artikelen verkocht " +
-                    "voor een totaal van " + kantine.hoeveelheidGeldInKassa());
-            kantine.resetKassa();
+            System.out.println("Er zijn op dag " + i + " " + kantine.getKassa().aantalArtikelen() + " artikelen verkocht " +
+                    "voor een totaal van " + kantine.getKassa().hoeveelheidGeldInKassa());
+            kantine.getKassa().resetKassa();
         }
 
     }

@@ -2,6 +2,7 @@ package src.com.kantine;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Iterator;
 
 public class Kassa {
     private KassaRij rij;
@@ -24,8 +25,11 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        totaalWaarde = totaalWaarde.add(klant.getTotaalPrijs());
-        artikelCount += klant.getAantalArtikelen();
+        Iterator<Artikel> i = klant.getArtikelen();
+        while (i.hasNext()){
+            totaalWaarde = totaalWaarde.add(i.next().getPrijs());
+            artikelCount++;
+        }
     }
 
     /**
