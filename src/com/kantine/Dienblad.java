@@ -1,16 +1,17 @@
 package src.com.kantine;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Dienblad {
-    private ArrayList<Artikel> artikelen;
+    private Stack<Artikel> artikelen;
     private Persoon klant;
 
     /**
      * Constructor
      */
     public Dienblad() {
-        artikelen = new ArrayList<>();
+        artikelen = new Stack<>();
     }
 
     public Dienblad(Persoon klant) {
@@ -22,7 +23,7 @@ public class Dienblad {
      * Methode om artikel aan dienblad toe te voegen
      *
      * @param artikel
-     */
+     */ArrayList
     public void voegToe(Artikel artikel) {
         artikelen.add(artikel);
     }
