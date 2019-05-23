@@ -15,7 +15,7 @@ public class Artikel {
     public Artikel(String naam, BigDecimal prijs) {
         this();
         this.naam = naam;
-        this.prijs = prijs.setScale(2, RoundingMode.HALF_UP);
+        this.prijs = prijs.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public String getNaam(){
