@@ -36,8 +36,5 @@ public class testClass {
         Kassa kassa = new Kassa(rij);
         kassa.rekenAf(rij.eerstePersoonInRij());
         System.out.println("In de kassa: " + kassa.hoeveelheidGeldInKassa());
-
-        KantineSimulatie KS = new KantineSimulatie();
-        KS.simuleer(7);
     }
 }

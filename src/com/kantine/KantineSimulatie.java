@@ -54,9 +54,7 @@ public class KantineSimulatie {
         else{
             dagen = Integer.parseInt(args[0]);
         }
-
-
+        KantineSimulatie KS = new KantineSimulatie();
+        KS.simuleer(dagen);
     }
-
-
 }
