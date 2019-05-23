@@ -24,7 +24,7 @@ public class Dienblad {
      * Methode om artikel aan dienblad toe te voegen
      *
      * @param artikel
-     */ArrayList
+     */
     public void voegToe(Artikel artikel) {
         artikelen.add(artikel);
     }
