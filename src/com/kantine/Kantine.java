@@ -1,5 +1,7 @@
 package src.com.kantine;
 
+import java.math.BigDecimal;
+
 public class Kantine {
     private Kassa kassa;
     private KassaRij kassarij;
@@ -21,9 +23,9 @@ public class Kantine {
     public void loopPakSluitAan() {
         Persoon persoon = new Persoon();
         Dienblad dienblad = new Dienblad(persoon);
-        Artikel artikel = new Artikel("Appel", 4.99);
+        Artikel artikel = new Artikel("Appel", new BigDecimal(4.99));
         dienblad.voegToe(artikel);
-        Artikel artikel2 = new Artikel("Banaan", 19.99);
+        Artikel artikel2 = new Artikel("Banaan", new BigDecimal(9.99));
         dienblad.voegToe(artikel2);
         kassarij.sluitAchteraan(dienblad);
     }
@@ -43,7 +45,7 @@ public class Kantine {
      *
      * @return hoeveelheid geld in kassa
      */
-    public double hoeveelheidGeldInKassa() {
+    public BigDecimal hoeveelheidGeldInKassa() {
         // method body omitted
         return kassa.hoeveelheidGeldInKassa();
     }

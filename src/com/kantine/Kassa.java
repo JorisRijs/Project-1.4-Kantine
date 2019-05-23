@@ -1,14 +1,18 @@
 package src.com.kantine;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Kassa {
     private KassaRij rij;
     private int artikelCount;
-    private double totaalWaarde;
+    private BigDecimal totaalWaarde;
     /**
      * Constructor
      */
     public Kassa(KassaRij kassarij) {
         this.rij = kassarij;
+        totaalWaarde = new BigDecimal(0.00);
     }
 
     /**
@@ -20,7 +24,7 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        totaalWaarde += klant.getTotaalPrijs();
+        totaalWaarde = totaalWaarde.add(klant.getTotaalPrijs());
         artikelCount += klant.getAantalArtikelen();
     }
 
@@ -41,7 +45,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public double hoeveelheidGeldInKassa() {
+    public BigDecimal hoeveelheidGeldInKassa() {
         return totaalWaarde;
     }
 
@@ -50,7 +54,7 @@ public class Kassa {
      * de totale hoeveelheid geld in de kassa.
      */
     public void resetKassa() {
-        totaalWaarde = 0;
+        totaalWaarde = new BigDecimal(0.00);
         artikelCount = 0;
     }
 }

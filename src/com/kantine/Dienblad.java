@@ -1,5 +1,6 @@
 package src.com.kantine;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -51,10 +52,10 @@ public class Dienblad {
      *
      * @return De totaalprijs
      */
-    public double getTotaalPrijs() {
-        double totaalPrijs = 0.00;
+    public BigDecimal getTotaalPrijs() {
+        BigDecimal totaalPrijs = new BigDecimal(0.00);
         for(int i=0; i<getAantalArtikelen(); i++){
-            totaalPrijs += artikelen.get(i).getPrijs();
+            totaalPrijs = totaalPrijs.add(artikelen.get(i).getPrijs());
         }
         return totaalPrijs;
     }
