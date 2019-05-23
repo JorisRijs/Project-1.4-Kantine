@@ -18,7 +18,7 @@ public class KassaRij {
      * @param klant
      */
     public void sluitAchteraan(Dienblad klant) {
-        rij.add(klant);
+        rij.add(klant);;
     }
 
     /**

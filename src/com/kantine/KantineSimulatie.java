@@ -24,25 +24,20 @@ public class KantineSimulatie {
     public void simuleer(int dagen){
 
         //herhaal elke dag
-        for(int i=0;i <= dagen;i++){
+        for(int i=0; i < dagen; i++){
 
             //per dag nu even vast 10 + i personen nar binnen
             //laten gaan, wordt volgende week veranderd...
 
             //for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                kantine.verwerkRijVoorKassa();
-                kantine.aantalArtikelen();
-                kantine.hoeveelheidGeldInKassa();
-                System.out.println(j);
+                kantine.loopPakSluitAan();
             }
 
-
-            //verwerk rij voor de kassa
-
-            // toon dagtotalen (artikelen en geld in kassa)
-
-            //reset de kassa voor de volgende dag
+            kantine.verwerkRijVoorKassa();
+            System.out.println("Er zijn op dag " + i + " " + kantine.aantalArtikelen() + " artikelen verkocht " +
+                    "voor een totaal van " + kantine.hoeveelheidGeldInKassa());
+            kantine.resetKassa();
         }
 
     }
