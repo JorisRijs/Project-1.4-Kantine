@@ -10,10 +10,10 @@ public class testClass {
         Persoon persoon = new Persoon(5, "Henk", "Tattje", datum, 'M');
         System.out.println(persoon.toString());
 
-        Artikel artikel1 = new Artikel("appel", 2.99);
-        Artikel artikel2 = new Artikel("een banaan", 9.99);
-        Artikel artikel3 = new Artikel("artikel", 1.50);
-        Artikel artikel4 = new Artikel("voedsel", 0.69);
+        Artikel artikel1 = new Artikel("appel", new BigDecimal(1.50));
+        Artikel artikel2 = new Artikel("een banaan", new BigDecimal(2.99));
+        Artikel artikel3 = new Artikel("artikel", new BigDecimal(9.99));
+        Artikel artikel4 = new Artikel("voedsel", new BigDecimal(1.05));
         System.out.println(artikel1.toString());
 
         Dienblad dienblad = new Dienblad(persoon);
