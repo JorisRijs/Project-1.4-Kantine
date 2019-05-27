@@ -40,6 +40,10 @@ public class Kantine {
         }
     }
 
+    /**
+     * Returned de kassa.
+     * @return Kassa
+     */
     public Kassa getKassa() {
         return kassa;
     }

@@ -20,7 +20,15 @@ public class Datum {
             this.jaar = jaar;
         }
     }
-	
+
+    /**
+     * Methode om te controleren of een datum klopt
+     *
+     * @param dag
+     * @param maand
+     * @param jaar
+     * @return boolean
+     */
 	public boolean bestaatDatum(int dag, int maand, int jaar){
 		if (dag >= 1 && maand >= 1 && maand <= 12 && jaar >= 1900 && jaar <= 2100){
             if(dag <= 31 && maand == 1 || maand == 3 || maand == 5 || maand == 7 || maand == 8 || maand == 10 || maand == 12){

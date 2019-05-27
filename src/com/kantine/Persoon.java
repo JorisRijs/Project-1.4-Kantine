@@ -79,7 +79,10 @@ public class Persoon {
             System.out.println(geslacht + " is geen juist geslacht");
         }
     }
-
+    /**
+     * Methode om de waarden van de klasse persoon te krijgen als string
+     * @return string
+     */
     public String toString(){
         return(BSN + " " + voornaam + " " + achternaam + " " + getGeslacht() + " " + getGeboorteDatum());
     }
