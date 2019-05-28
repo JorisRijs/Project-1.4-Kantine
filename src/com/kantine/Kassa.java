@@ -7,13 +7,13 @@ import java.util.Iterator;
 public class Kassa {
     private KassaRij rij;
     private int artikelCount;
-    private BigDecimal totaalWaarde;
+    private Double totaalWaarde;
     /**
      * Constructor
      */
     public Kassa(KassaRij kassarij) {
         this.rij = kassarij;
-        totaalWaarde = new BigDecimal(0.00);
+        totaalWaarde = 0.00;
     }
 
     /**
@@ -27,7 +27,8 @@ public class Kassa {
     public void rekenAf(Dienblad klant) {
         Iterator<Artikel> i = klant.getArtikelen();
         while (i.hasNext()){
-            totaalWaarde = totaalWaarde.add(i.next().getPrijs());
+            Artikel time = i.next();
+            totaalWaarde = time.getPrijs();
             artikelCount++;
         }
     }
