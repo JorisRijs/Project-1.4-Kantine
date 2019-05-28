@@ -3,6 +3,7 @@ package src.com.kantine;
 public class KantineSimulatie {
 
     private Kantine kantine;
+    private KantineAanbod KA;
 
     public static final int DAGEN = 7;
 
@@ -10,8 +11,13 @@ public class KantineSimulatie {
      * constructor
      */
 
+    String[] artikels = new String[] {"appel", "babaan", "burger", "Patat", "Pindakaas"};
+    Double[] prijzen = {2.99, 1.99, 10.99, 5.99, 4.99};
+    int[] aantalen = {5, 13, 6, 2, 50};
+
     public KantineSimulatie(){
         kantine = new Kantine();
+
     }
 
     /**
@@ -27,11 +33,12 @@ public class KantineSimulatie {
         for(int i=0; i < dagen; i++){
 
             //per dag nu even vast 10 + i personen nar binnen
-            //laten gaan, wordt volgende week veranderd...
+            //later gaan, wordt volgende week veranderd...
 
             //for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                kantine.loopPakSluitAan();
+                Persoon test = new Persoon();
+                kantine.loopPakSluitAan(test, artikels);
             }
 
             kantine.verwerkRijVoorKassa();
@@ -47,6 +54,7 @@ public class KantineSimulatie {
      */
 
     public static void main(String[] args){
+
         int dagen;
         if(args.length == 0){
             dagen = DAGEN;

@@ -1,10 +1,12 @@
 package src.com.kantine;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Kantine {
     private Kassa kassa;
     private KassaRij kassarij;
+    private KantineAanbod kantineaanbod;
 
     /**
      * Constructor
@@ -30,6 +32,42 @@ public class Kantine {
         kassarij.sluitAchteraan(dienblad);
     }
 
+    /**
+     * In deze methode kiest een Persoon met een dienblad
+     * de artikelen in artikelnamen.
+     *
+     * @param persoon
+     * @param artikelnamen
+     */
+    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen){
+
+        Dienblad dienblad  = new Dienblad(persoon);
+        for(int i = 0; i < artikelnamen.length; i++){
+            String temp = artikelnamen[i];
+
+            Artikel artikel = kantineaanbod.getArtikel(temp);
+            dienblad.voegToe(artikel);
+        }
+        kassarij.sluitAchteraan(dienblad);
+
+    }
+
+    /**
+     * Deze methode retourneerd het kantineaanbood van een kantine als een object.
+     * @return KantineAanbod
+     */
+
+    public KantineAanbod getKantineaanbod() {
+        return kantineaanbod;
+    }
+
+    /**
+     * Deze methode set het kantine aanbod van een kantine op basis van een kantineaanbod object.
+     * @param kantineaanbod
+     */
+    public void setKantineaanbod(KantineAanbod kantineaanbod) {
+        this.kantineaanbod = kantineaanbod;
+    }
 
     /**
      * Deze methode handelt de rij voor de kassa af.
