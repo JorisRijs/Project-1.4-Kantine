@@ -23,9 +23,9 @@ public class Kantine {
     public void loopPakSluitAan() {
         Persoon persoon = new Persoon();
         Dienblad dienblad = new Dienblad(persoon);
-        Artikel artikel = new Artikel("Appel", new BigDecimal(4.99));
+        Artikel artikel = new Artikel("Appel", 4.99);
         dienblad.voegToe(artikel);
-        Artikel artikel2 = new Artikel("Banaan", new BigDecimal(9.99));
+        Artikel artikel2 = new Artikel("Banaan", 9.99);
         dienblad.voegToe(artikel2);
         kassarij.sluitAchteraan(dienblad);
     }

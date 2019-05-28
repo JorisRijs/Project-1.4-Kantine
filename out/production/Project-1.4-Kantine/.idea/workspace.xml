@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="716105b5-3642-460d-8225-c1902e9634aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/src/com/kantine/Artikel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/src/com/kantine/Artikel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/src/com/kantine/Kantine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project-1.4-Kantine/src/com/kantine/Kassa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kantine/KantineAanbod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kantine/KantineAanbod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kantine/Kassa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kantine/Kassa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kantine/Artikel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kantine/Artikel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,7 +91,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/kantine/KantineAanbod.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
+                <state relative-caret-position="50">
                   <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
                   <folding>
                     <element signature="e#889#898#0" expanded="true" />
@@ -118,11 +113,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/kantine/Kassa.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+                <state relative-caret-position="480">
+                  <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -130,11 +125,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/kantine/Artikel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="64">
-                  <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+                <state relative-caret-position="96">
+                  <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -151,6 +146,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -160,13 +160,13 @@
         <option value="$PROJECT_DIR$/src/com/kantine/KantineSimulatie.java" />
         <option value="$PROJECT_DIR$/src/com/kantine/KantineAanbod.java" />
         <option value="$PROJECT_DIR$/src/com/kantine/Kassa.java" />
+        <option value="$PROJECT_DIR$/src/com/kantine/Artikel.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="957" />
-    <option name="y" value="24" />
-    <option name="width" value="966" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="27" />
+    <option name="width" value="1920" />
     <option name="height" value="996" />
   </component>
   <component name="ProjectView">
@@ -195,6 +195,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -259,7 +263,7 @@
       <workItem from="1558595954000" duration="3289000" />
       <workItem from="1558960609761" duration="1756000" />
       <workItem from="1559042896750" duration="1303000" />
-      <workItem from="1559047211104" duration="977000" />
+      <workItem from="1559047211104" duration="2161000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1558595052006</created>
@@ -289,17 +293,24 @@
       <option name="project" value="LOCAL" />
       <updated>1559047425444</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="branch">
+      <created>1559049179522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1559049179522</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12107000" />
+    <option name="totallyTimeSpent" value="13291000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="27" width="1922" height="1003" extended-state="6" />
+    <frame x="0" y="27" width="1920" height="996" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11686233" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08386752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -318,7 +329,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32896176" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.18505748" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.18655851" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -408,7 +419,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="changed dienblad" />
     <MESSAGE value="Added KantineAanbod" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added KantineAanbod" />
+    <MESSAGE value="branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="branch" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/.cache/kioexec/krun/4679_0/imgres" />
@@ -469,13 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kantine/Artikel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/kantine/Persoon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -489,7 +494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/kantine/KantineAanbod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="50">
           <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
           <folding>
             <element signature="e#889#898#0" expanded="true" />
@@ -499,11 +504,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/kantine/Kassa.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        <state relative-caret-position="480">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/kantine/Artikel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
         </state>
       </provider>
     </entry>

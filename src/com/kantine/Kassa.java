@@ -50,7 +50,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public BigDecimal hoeveelheidGeldInKassa() {
+    public Double hoeveelheidGeldInKassa() {
         return totaalWaarde;
     }
 
@@ -59,7 +59,7 @@ public class Kassa {
      * de totale hoeveelheid geld in de kassa.
      */
     public void resetKassa() {
-        totaalWaarde = new BigDecimal(0.00);
+        totaalWaarde = 0.00;
         artikelCount = 0;
     }
 }
