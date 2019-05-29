@@ -12,8 +12,6 @@ public class KantineSimulatie {
      */
 
     String[] artikels = new String[] {"appel", "babaan", "burger", "Patat", "Pindakaas"};
-    Double[] prijzen = {2.99, 1.99, 10.99, 5.99, 4.99};
-    int[] aantalen = {5, 13, 6, 2, 50};
 
     public KantineSimulatie(){
         kantine = new Kantine();

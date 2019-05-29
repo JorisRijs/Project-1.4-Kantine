@@ -8,12 +8,17 @@ public class Kantine {
     private KassaRij kassarij;
     private KantineAanbod kantineaanbod;
 
+    String[] artikels = new String[] {"appel", "babaan", "burger", "Patat", "Pindakaas"};
+    Double[] prijzen = {2.99, 1.99, 10.99, 15.99, 14.99};
+    int[] aantalen = {5, 13, 6, 2, 50};
+
     /**
      * Constructor
      */
     public Kantine() {
         kassarij = new KassaRij();
         kassa = new Kassa(kassarij);
+        kantineaanbod = new KantineAanbod(artikels, prijzen, aantalen);
     }
 
     /**
@@ -22,7 +27,7 @@ public class Kantine {
      * en plaats deze op het dienblad. Tenslotte sluit de
      * Persoon zich aan bij de rij voor de kassa.
      */
-    public void loopPakSluitAan() {
+ /*   public void loopPakSluitAan() {
         Persoon persoon = new Persoon();
         Dienblad dienblad = new Dienblad(persoon);
         Artikel artikel = new Artikel("Appel", 4.99);
@@ -31,7 +36,7 @@ public class Kantine {
         dienblad.voegToe(artikel2);
         kassarij.sluitAchteraan(dienblad);
     }
-
+*/
     /**
      * In deze methode kiest een Persoon met een dienblad
      * de artikelen in artikelnamen.
@@ -44,8 +49,8 @@ public class Kantine {
         Dienblad dienblad  = new Dienblad(persoon);
         for(int i = 0; i < artikelnamen.length; i++){
             String temp = artikelnamen[i];
-
-            Artikel artikel = kantineaanbod.getArtikel(temp);
+            Artikel artikel = new Artikel();
+            artikel = kantineaanbod.getArtikel("appel");
             dienblad.voegToe(artikel);
         }
         kassarij.sluitAchteraan(dienblad);
