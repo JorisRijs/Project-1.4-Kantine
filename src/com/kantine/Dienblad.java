@@ -3,9 +3,10 @@ package src.com.kantine;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Queue;
 
 public class Dienblad {
-    private ArrayList<Artikel> artikelen;
+    private Queue<Artikel> artikelen;
     private Persoon klant;
 
     /**
