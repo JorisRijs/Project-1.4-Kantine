@@ -44,8 +44,7 @@ public class Kantine {
      * @param persoon
      * @param artikelnamen
      */
-    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen){
-        Dienblad dienblad  = new Dienblad(persoon);
+    public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen){
         for(int i = 0; i < artikelnamen.length; i++){
             Artikel artikel = kantineaanbod.getArtikel(artikelnamen[i]);
             dienblad.voegToe(artikel);
