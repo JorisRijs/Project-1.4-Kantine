@@ -66,7 +66,7 @@ public class Kantine {
      * Deze methode set het kantine aanbod van een kantine op basis van een kantineaanbod object.
      * @param kantineaanbod
      */
-    public void setKantineaanbod(KantineAanbod kantineaanbod) {
+    public void setKantineAanbod(KantineAanbod kantineaanbod) {
         this.kantineaanbod = kantineaanbod;
     }
 
