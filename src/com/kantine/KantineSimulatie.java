@@ -34,8 +34,9 @@ public class KantineSimulatie {
 
             //for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                Persoon testPersoon = new Persoon();
-                kantine.loopPakSluitAan(testPersoon, artikels);
+                Persoon persoon = new Persoon();
+                Dienblad dienblad = new Dienblad(persoon);
+                kantine.loopPakSluitAan(dienblad, artikels);
             }
 
             kantine.verwerkRijVoorKassa();
