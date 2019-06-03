@@ -41,7 +41,7 @@ public class Kantine {
      * In deze methode kiest een Persoon met een dienblad
      * de artikelen in artikelnamen.
      *
-     * @param persoon
+     * @param dienblad
      * @param artikelnamen
      */
     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen){
