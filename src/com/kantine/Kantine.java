@@ -45,16 +45,12 @@ public class Kantine {
      * @param artikelnamen
      */
     public void loopPakSluitAan(Persoon persoon, String[] artikelnamen){
-
         Dienblad dienblad  = new Dienblad(persoon);
         for(int i = 0; i < artikelnamen.length; i++){
-            String temp = artikelnamen[i];
-            Artikel artikel = new Artikel();
-            artikel = kantineaanbod.getArtikel("appel");
+            Artikel artikel = kantineaanbod.getArtikel(artikelnamen[i]);
             dienblad.voegToe(artikel);
         }
         kassarij.sluitAchteraan(dienblad);
-
     }
 
     /**

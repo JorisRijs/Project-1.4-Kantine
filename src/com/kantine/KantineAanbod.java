@@ -3,7 +3,7 @@ import java.util.*;
 
 public class KantineAanbod {
     // interne opslag voorraad
-    private HashMap<String, ArrayList<  Artikel>> aanbod;
+    private HashMap<String, ArrayList<Artikel>> aanbod;
     private HashMap<String, Integer> startVoorraad;
     private HashMap<String, Double> prijzen;
     

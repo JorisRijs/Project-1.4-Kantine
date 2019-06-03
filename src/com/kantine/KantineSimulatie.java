@@ -15,7 +15,6 @@ public class KantineSimulatie {
 
     public KantineSimulatie(){
         kantine = new Kantine();
-
     }
 
     /**
@@ -35,8 +34,8 @@ public class KantineSimulatie {
 
             //for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                Persoon test = new Persoon();
-                kantine.loopPakSluitAan(test, artikels);
+                Persoon testPersoon = new Persoon();
+                kantine.loopPakSluitAan(testPersoon, artikels);
             }
 
             kantine.verwerkRijVoorKassa();
