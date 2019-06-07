@@ -34,6 +34,8 @@ public class Artikel {
         this.prijs = prijs;
     }
 
+
+
     /**
      * Methode om de waarden van de klasse artikel te krijgen als string
      * @return string
