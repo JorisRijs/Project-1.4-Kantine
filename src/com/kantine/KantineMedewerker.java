@@ -11,4 +11,26 @@ public class KantineMedewerker extends Persoon {
         this.employeeNumber = employeeNumber;
         this.Achter_Kassa = Achter_Kassa;
     }
+
+    public KantineMedewerker(int employeeNumber, boolean Achter_Kassa){
+        super();
+        this.employeeNumber = employeeNumber;
+        this.Achter_Kassa = Achter_Kassa;
+    }
+
+    public int getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public boolean isAchter_Kassa() {
+        return Achter_Kassa;
+    }
+
+    public void setEmployeeNumber(int employeeNumber) {
+        this.employeeNumber = employeeNumber;
+    }
+
+    public void setAchter_Kassa(boolean achter_Kassa) {
+        Achter_Kassa = achter_Kassa;
+    }
 }
