@@ -2,6 +2,8 @@ package src.com.kantine;
 
 public class Administratie {
 
+    private static final int DAYS_IN_WEEK = 7;
+
     private Administratie(){}
 
     /**
@@ -47,7 +49,7 @@ public class Administratie {
 
     public static double[] berekenDagOmzet(double[] omzet) {
         double[] temp = new double[7];
-        for(int i = 0; i < 7; i++) {
+        for(int i = 0; i < DAYS_IN_WEEK; i++) {
 
             int j = 0;
             while( true ) {
