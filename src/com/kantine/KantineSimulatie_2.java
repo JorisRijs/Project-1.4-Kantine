@@ -261,8 +261,13 @@ public class KantineSimulatie_2 {
 
 
 
-        double[] nummers = new double[]{567.70, 498.25, 458.90};
-        double avgrevenue = Administratie.berekenGemiddeldeOmzet(nummers);
-        System.out.println(avgrevenue);
+        double[] omzetten = new double[]{321.25, 450.50, 210.45, 190.85, 193.25, 159.90, 214.25, 220.90, 102.90, 242.70, 260.35};
+        int[] aantallen = new int[]{100, 125, 56, 160};
+        double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
+        System.out.println(Administratie.berekenGemiddeldeOmzet(omzetten));
+        System.out.println(Administratie.berekenGemiddeldAantal(aantallen));
+        for(int i =0; i < dagOmzetten.length; i++) {
+            System.out.println("Gemiddelde omzet dag " + i + " : " + dagOmzetten[i]);
+        }
     }
 }
