@@ -2,6 +2,8 @@ package src.com.kantine;
 
 public class Administratie {
 
+    private Administratie(){}
+
     /**
      * Deze methode berekent van de int array aantal de gemiddelde waarde
      *

@@ -159,6 +159,7 @@ public class KantineSimulatie_2 {
         }
         KantineSimulatie_2 KS = new KantineSimulatie_2();
         KS.simuleer(dagen);
+        /*
         Administratie Ad = new Administratie();
         int[] getallen = new int[]{45, 56, 34, 39, 40, 31};
         Double avg = Ad.berekenGemiddeldAantal(getallen);
@@ -166,7 +167,13 @@ public class KantineSimulatie_2 {
 
         double[] nummers = new double[]{567.70, 498.25, 458.90};
         double avgrevenue = Ad.berekenGemiddeldeOmzet(nummers);
-        System.out.println(avgrevenue);
+        */
 
+
+
+
+        double[] nummers = new double[]{567.70, 498.25, 458.90};
+        double avgrevenue = Administratie.berekenGemiddeldeOmzet(nummers);
+        System.out.println(avgrevenue);
     }
 }
