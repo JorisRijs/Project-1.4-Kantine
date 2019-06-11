@@ -117,29 +117,6 @@ public class KantineSimulatie_2 {
     public void simuleer(int dagen) {
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
-            /*
-            // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG) ;
-            // laat de personen maar komen...
-            for(int j = 0; j < aantalpersonen; j++) {
-                // maak persoon en dienblad aan, koppel ze
-                // en bedenk hoeveel artikelen worden gepakt
-                Persoon persoon = new Persoon();
-                Dienblad dienblad = new Dienblad(persoon);
-                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
-                // genereer de "artikelnummers", dit zijn indexen
-                // van de artikelnamen
-                int[] tepakken = getRandomArray(aantalartikelen, 0, AANTAL_ARTIKELEN-1);
-
-                // vind de artikelnamen op basis van
-                // de indexen hierboven
-                String[] artikelen = geefArtikelNamen(tepakken);
-
-                // loop de kantine binnen, pak de gewenste
-                // artikelen, sluit aan
-                kantine.loopPakSluitAan(dienblad, artikelen);
-            }*/
-
             String[] courses = new String[]{"IT", "business", "health", "NSE", "se", "the course we don't speak about 'bitm'"};
             Random rnd = new Random();
 
@@ -248,24 +225,12 @@ public class KantineSimulatie_2 {
         }
         KantineSimulatie_2 KS = new KantineSimulatie_2();
         KS.simuleer(dagen);
-        /*
-        Administratie Ad = new Administratie();
-        int[] getallen = new int[]{45, 56, 34, 39, 40, 31};
-        Double avg = Ad.berekenGemiddeldAantal(getallen);
-        System.out.println(avg);
-
-        double[] nummers = new double[]{567.70, 498.25, 458.90};
-        double avgrevenue = Ad.berekenGemiddeldeOmzet(nummers);
-        */
-
-
-
 
         double[] omzetten = new double[]{321.25, 450.50, 210.45, 190.85, 193.25, 159.90, 214.25, 220.90, 102.90, 242.70, 260.35};
         int[] aantallen = new int[]{100, 125, 56, 160};
         double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
-        System.out.println(Administratie.berekenGemiddeldeOmzet(omzetten));
-        System.out.println(Administratie.berekenGemiddeldAantal(aantallen));
+        System.out.println("De gemiddelde omzet is : " + Administratie.berekenGemiddeldeOmzet(omzetten));
+        System.out.println("Het gemiddelde aantal verkochte artikelen is : " + Administratie.berekenGemiddeldAantal(aantallen));
         for(int i =0; i < dagOmzetten.length; i++) {
             System.out.println("Gemiddelde omzet dag " + i + " : " + dagOmzetten[i]);
         }
