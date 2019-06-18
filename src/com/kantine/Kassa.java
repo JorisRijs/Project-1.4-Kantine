@@ -16,7 +16,6 @@ public class Kassa {
         totaalWaarde = 0.00;
     }
 
-
     /**
      * Vraag het aantal artikelen en de totaalprijs op.
      * Tel deze gegevens op bij de controletotalen die voor
