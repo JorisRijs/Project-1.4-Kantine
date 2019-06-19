@@ -24,7 +24,7 @@ public class KantineSimulatie {
             {"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap"};
 
     // prijzen
-    private static Double[] artikelprijzen = new Double[]{1.50, 2.10, 1.65, 1.65};
+    private static Double[] artikelprijzen = new Double[]{1.00, 3.10, 2.00, 1.65};
 
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10000;
@@ -152,6 +152,17 @@ public class KantineSimulatie {
                     Docent docent = new Docent(docentString);
                     klant = new Dienblad(docent);
                 }
+                //bepaal de betaalwijze van de klant doormiddel van een random getal
+                int randBetaalWijze = getRandomValue(1, 10);
+                Betaalwijze betaalWijze;
+                if (randBetaalWijze <= 3){
+                    betaalWijze = new Contant();
+                } else {
+                    betaalWijze = new Pinpas();
+                }
+                betaalWijze.setSaldo(8); //alle klanten hebben voor nu 8 euro per dag
+                klant.getKlant().setBetaalwijze(betaalWijze);
+
                 //pak een random aantal artikelen tussen MIN_ARTIKELEN_PER_PERSOON en MAX_ARTIKELEN_PER_PERSOON
                 int artikelCount = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
                 int[] artikelIndexen = getRandomArray(artikelCount, 0, artikelCount-1);

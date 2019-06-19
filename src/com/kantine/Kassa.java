@@ -25,11 +25,19 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        Iterator<Artikel> i = klant.getArtikelen();
-        while (i.hasNext()){
-            Artikel time = i.next();
-            totaalWaarde += time.getPrijs();
-            artikelCount++;
+        Iterator<Artikel> artikelen = klant.getArtikelen();
+        Persoon klantPersoon = klant.getKlant();
+        Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
+        while (artikelen.hasNext()){
+            Artikel artikel = artikelen.next();
+            if(betaalWijze.betaal(artikel.getPrijs())){
+                totaalWaarde += artikel.getPrijs();
+                artikelCount++;
+                //tijdelijke prints om te testen
+                System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " kocht " + artikel.getNaam() + " en heeft nu " + betaalWijze.getSaldo() + " euro");
+            } else {
+                System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " had niet genoeg geld om te betalen");
+            }
         }
     }
 

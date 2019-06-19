@@ -11,10 +11,10 @@ public class Persoon {
 
     public Persoon(){
         BSN = 0;
-        voornaam = "";
-        achternaam = "";
+        voornaam = "Henk";
+        achternaam = "Tattje";
         geboorteDatum = new Datum(0, 0, 0);
-        geslacht = 'O';
+        geslacht = 'M';
     }
 
     public Persoon(int BSN, String voornaam, String achternaam, Datum geboorteDatum, char geslacht){
