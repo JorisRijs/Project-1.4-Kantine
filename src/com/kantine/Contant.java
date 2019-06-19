@@ -8,12 +8,11 @@ public class Contant extends Betaalwijze {
      * @param amount
      * @return boolean of er genoeg saldo is
      */
-    public boolean betaal(double amount){
+    public void betaal(double amount) throws TeWeinigGeldException{
         if(getSaldo() >= amount){
             changeSaldo(-amount);
-            return true;
         } else {
-            return false;
+            throw new TeWeinigGeldException();
         }
     }
 }

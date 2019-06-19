@@ -23,5 +23,5 @@ public abstract class Betaalwijze {
      * @param amount
      * @return boolean die aangeeft of er voldoende saldo is
      */
-    public abstract boolean betaal(double amount);
+    public abstract void betaal(double amount);
 }

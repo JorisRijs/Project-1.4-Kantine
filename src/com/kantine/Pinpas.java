@@ -14,15 +14,14 @@ public class Pinpas extends Betaalwijze {
     /**
      * Methode om betaling af te handelen
      *
-     * @param double amount
+     * @param //double amount
      * @return boolean of er genoeg saldo is
      */
-    public boolean betaal(double amount){
+    public void betaal(double amount) throws TeWeinigGeldException{
         if(getSaldo() >= amount){
             changeSaldo(-amount);
-            return true;
         } else {
-            return false;
+            throw new TeWeinigGeldException();
         }
     }
 }

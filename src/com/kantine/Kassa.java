@@ -30,10 +30,12 @@ public class Kassa {
         Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
         double totaalPrijs = 0;
 
+        //bereken totaalprijs
         while (artikelen.hasNext()){
             totaalPrijs += artikelen.next().getPrijs();
         }
 
+        //als de klant een kortingskaart heeft bereken de nieuwe prijs
         if(klantPersoon instanceof KortingskaartHouder){
             double korting;
             korting = totaalPrijs * (((KortingskaartHouder) klantPersoon).getKortingsPercentage() / 100);
@@ -43,16 +45,20 @@ public class Kassa {
             totaalPrijs -= korting;
 
             //tijdelijke print om te testen
-            System.out.println(klantPersoon.getVoornaam() + " heeft " + ((KortingskaartHouder) klantPersoon).getKortingsPercentage() + "% korting en bespaart " + korting + " euro.");
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " heeft "
+                    + ((KortingskaartHouder) klantPersoon).getKortingsPercentage() + "% korting en bespaart " + korting + "€");
         }
 
-        if(betaalWijze.betaal(totaalPrijs)){
+        //probeer te betalen, zoniet gooi een exception die in KantineSimulatie wordt opgevangen
+        try {
+            betaalWijze.betaal(totaalPrijs);
             totaalWaarde += totaalPrijs;
             artikelCount++;
             //tijdelijke prints om te testen
-            System.out.println(klantPersoon.getVoornaam() + " betaalde " + totaalPrijs + " en heeft nu " + betaalWijze.getSaldo()  + " euro over");
-        } else {
-            System.out.println(klantPersoon.getVoornaam() + " had niet genoeg geld om te betalen");
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " betaalde " + totaalPrijs + "€ en heeft nu " + betaalWijze.getSaldo() + "€ over");
+        }
+        catch (TeWeinigGeldException e){
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " had niet genoeg geld om te betalen");
         }
     }
 

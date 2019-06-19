@@ -135,8 +135,6 @@ public class KantineSimulatie {
 
                     KantineMedewerker kantineMedewerker = new KantineMedewerker(employeeNumber, false);
                     klant = new Dienblad(kantineMedewerker);
-                    //tijdelijke naam
-                    kantineMedewerker.setVoornaam("Jan");
                 }
                 else if (randCustomer <= 89){ //student
                     int studentNumber = random.nextInt();
@@ -146,8 +144,6 @@ public class KantineSimulatie {
 
                     Student student = new Student(studentNumber, courseString);
                     klant = new Dienblad(student);
-                    //tijdelijke naam
-                    student.setVoornaam("Joris");
                 }
                 else{ //docent
                     int docentNum = getRandomValue(0, docenten.length-1);
@@ -155,8 +151,6 @@ public class KantineSimulatie {
 
                     Docent docent = new Docent(docentString);
                     klant = new Dienblad(docent);
-                    //tijdelijke naam
-                    docent.setVoornaam("Henk");
                 }
                 //bepaal de betaalwijze van de klant doormiddel van een random getal
                 int randBetaalWijze = getRandomValue(1, 10);
@@ -168,6 +162,10 @@ public class KantineSimulatie {
                 }
                 betaalWijze.setSaldo(8); //alle klanten hebben voor nu 8 euro per dag
                 klant.getKlant().setBetaalwijze(betaalWijze);
+
+                //Geef de klant wat gegevens
+                klant.getKlant().setVoornaam(Namen.getRandomVoorNaam("man"));
+                klant.getKlant().setAchternaam(Namen.getRandomAchterNaam());
 
                 //pak een random aantal artikelen tussen MIN_ARTIKELEN_PER_PERSOON en MAX_ARTIKELEN_PER_PERSOON
                 int artikelCount = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
@@ -181,9 +179,11 @@ public class KantineSimulatie {
             kantine.verwerkRijVoorKassa();
 
             //print de dagtotalen en hoeveel personen binnen zijn gekomen
+            System.out.println("=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
             System.out.println("Er zijn op dag " + i + " " + kantine.getKassa().aantalArtikelen() + " artikelen verkocht " +
                     "voor een totaal van " + kantine.getKassa().hoeveelheidGeldInKassa());
             System.out.println("Er waren " + customerCount + " klanten.");
+            System.out.println("=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
 
             // reset de kassa voor de volgende dag
             kantine.getKassa().resetKassa();
