@@ -7,6 +7,8 @@ public class Persoon {
     private Datum geboorteDatum;
     private char geslacht;
 
+    private Betaalwijze betaalwijze;
+
     public Persoon(){
         BSN = 0;
         voornaam = "";
@@ -27,7 +29,13 @@ public class Persoon {
         this.geboorteDatum = geboorteDatum;
     }
 
+    public Betaalwijze getBetaalwijze() {
+        return betaalwijze;
+    }
 
+    public void setBetaalwijze(Betaalwijze betaalwijze) {
+        this.betaalwijze = betaalwijze;
+    }
 
     public int getBSN() {
         return BSN;

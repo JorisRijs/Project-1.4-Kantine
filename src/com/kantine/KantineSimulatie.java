@@ -8,7 +8,7 @@ public class KantineSimulatie {
     private Kantine kantine;
 
     // dagen
-    public static final int DAGEN = 7;
+    private static final int DAGEN = 7;
 
     // kantineaanbod
     private KantineAanbod kantineaanbod;
