@@ -1,7 +1,7 @@
 package src.com.kantine;
 
 
-public class Docent extends Persoon {
+public class Docent extends Persoon implements KortingskaartHouder{
 
     private String acronym;
 
@@ -22,5 +22,18 @@ public class Docent extends Persoon {
 
     public void setAcronym(String acronym) {
         this.acronym = acronym;
+    }
+
+    //kortings kaart methodes
+    public double getKortingsPercentage(){
+        return 25.00;
+    }
+
+    public boolean hasMaximum(){
+        return true;
+    }
+
+    public double getMaximum(){
+        return 1.00;
     }
 }

@@ -28,16 +28,31 @@ public class Kassa {
         Iterator<Artikel> artikelen = klant.getArtikelen();
         Persoon klantPersoon = klant.getKlant();
         Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
+        double totaalPrijs = 0;
+
         while (artikelen.hasNext()){
-            Artikel artikel = artikelen.next();
-            if(betaalWijze.betaal(artikel.getPrijs())){
-                totaalWaarde += artikel.getPrijs();
-                artikelCount++;
-                //tijdelijke prints om te testen
-                System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " kocht " + artikel.getNaam() + " en heeft nu " + betaalWijze.getSaldo() + " euro");
-            } else {
-                System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " had niet genoeg geld om te betalen");
+            totaalPrijs += artikelen.next().getPrijs();
+        }
+
+        if(klantPersoon instanceof KortingskaartHouder){
+            double korting;
+            korting = totaalPrijs * (((KortingskaartHouder) klantPersoon).getKortingsPercentage() / 100);
+            if(((KortingskaartHouder) klantPersoon).hasMaximum() && korting > ((KortingskaartHouder) klantPersoon).getMaximum()){
+                korting = ((KortingskaartHouder) klantPersoon).getMaximum();
             }
+            totaalPrijs -= korting;
+
+            //tijdelijke print om te testen
+            System.out.println(klantPersoon.getVoornaam() + " heeft " + ((KortingskaartHouder) klantPersoon).getKortingsPercentage() + "% korting en bespaart " + korting + " euro.");
+        }
+
+        if(betaalWijze.betaal(totaalPrijs)){
+            totaalWaarde += totaalPrijs;
+            artikelCount++;
+            //tijdelijke prints om te testen
+            System.out.println(klantPersoon.getVoornaam() + " betaalde " + totaalPrijs + " en heeft nu " + betaalWijze.getSaldo()  + " euro over");
+        } else {
+            System.out.println(klantPersoon.getVoornaam() + " had niet genoeg geld om te betalen");
         }
     }
 

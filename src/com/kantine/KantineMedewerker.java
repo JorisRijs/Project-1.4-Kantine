@@ -1,6 +1,6 @@
 package src.com.kantine;
 
-public class KantineMedewerker extends Persoon {
+public class KantineMedewerker extends Persoon implements KortingskaartHouder{
 
     private int employeeNumber;
     private boolean Achter_Kassa;
@@ -32,5 +32,18 @@ public class KantineMedewerker extends Persoon {
 
     public void setAchter_Kassa(boolean achter_Kassa) {
         Achter_Kassa = achter_Kassa;
+    }
+
+    //kortings kaart methodes
+    public double getKortingsPercentage(){
+        return 35.00;
+    }
+
+    public boolean hasMaximum(){
+        return false;
+    }
+
+    public double getMaximum(){
+        return 1.00;
     }
 }

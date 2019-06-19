@@ -135,6 +135,8 @@ public class KantineSimulatie {
 
                     KantineMedewerker kantineMedewerker = new KantineMedewerker(employeeNumber, false);
                     klant = new Dienblad(kantineMedewerker);
+                    //tijdelijke naam
+                    kantineMedewerker.setVoornaam("Jan");
                 }
                 else if (randCustomer <= 89){ //student
                     int studentNumber = random.nextInt();
@@ -144,6 +146,8 @@ public class KantineSimulatie {
 
                     Student student = new Student(studentNumber, courseString);
                     klant = new Dienblad(student);
+                    //tijdelijke naam
+                    student.setVoornaam("Joris");
                 }
                 else{ //docent
                     int docentNum = getRandomValue(0, docenten.length-1);
@@ -151,6 +155,8 @@ public class KantineSimulatie {
 
                     Docent docent = new Docent(docentString);
                     klant = new Dienblad(docent);
+                    //tijdelijke naam
+                    docent.setVoornaam("Henk");
                 }
                 //bepaal de betaalwijze van de klant doormiddel van een random getal
                 int randBetaalWijze = getRandomValue(1, 10);
@@ -198,10 +204,13 @@ public class KantineSimulatie {
         double[] omzetten = new double[]{321.25, 450.50, 210.45, 190.85, 193.25, 159.90, 214.25, 220.90, 102.90, 242.70, 260.35};
         int[] aantallen = new int[]{100, 125, 56, 160};
         double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
-        System.out.println(Administratie.berekenGemiddeldeOmzet(omzetten));
-        System.out.println(Administratie.berekenGemiddeldAantal(aantallen));
+        System.out.println("+-----------------------Getallen----------------------+");
+        System.out.println("|Gemiddelde omzet per dag : " + Administratie.berekenGemiddeldeOmzet(omzetten));
+        System.out.println("|Gemiddelde verkochte artikelen per dag : " + Administratie.berekenGemiddeldAantal(aantallen));
+        System.out.println("| ");
         for(int i =0; i < dagOmzetten.length; i++) {
-            System.out.println("Gemiddelde omzet dag " + i + " : " + dagOmzetten[i]);
+            System.out.println("|Gemiddelde omzet op dag " + i + " : " + dagOmzetten[i]);
         }
+        System.out.println("+-----------------------------------------------------+");
     }
 }

@@ -11,8 +11,8 @@ public class Persoon {
 
     public Persoon(){
         BSN = 0;
-        voornaam = "Henk";
-        achternaam = "Tattje";
+        voornaam = "Joris";
+        achternaam = "";
         geboorteDatum = new Datum(0, 0, 0);
         geslacht = 'M';
     }
