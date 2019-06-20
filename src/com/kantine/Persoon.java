@@ -7,12 +7,14 @@ public class Persoon {
     private Datum geboorteDatum;
     private char geslacht;
 
+    private Betaalwijze betaalwijze;
+
     public Persoon(){
         BSN = 0;
-        voornaam = "";
+        voornaam = "Joris";
         achternaam = "";
         geboorteDatum = new Datum(0, 0, 0);
-        geslacht = 'O';
+        geslacht = 'M';
     }
 
     public Persoon(int BSN, String voornaam, String achternaam, Datum geboorteDatum, char geslacht){
@@ -27,7 +29,13 @@ public class Persoon {
         this.geboorteDatum = geboorteDatum;
     }
 
+    public Betaalwijze getBetaalwijze() {
+        return betaalwijze;
+    }
 
+    public void setBetaalwijze(Betaalwijze betaalwijze) {
+        this.betaalwijze = betaalwijze;
+    }
 
     public int getBSN() {
         return BSN;

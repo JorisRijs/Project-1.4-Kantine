@@ -1,3 +1,4 @@
+package src.com.kantine;
 import java.util.*;
 
 public class KantineAanbod {
@@ -12,7 +13,7 @@ public class KantineAanbod {
      * is een lijst met hoeveelheden. Let op: de dimensies van de drie arrays
      * moeten wel gelijk zijn!
      */
-    public KantineAanbod(String[] artikelnaam, double[] prijs, int[] hoeveelheid) {
+    public KantineAanbod(String[] artikelnaam, Double[] prijs, int[] hoeveelheid) {
         aanbod=new HashMap<String, ArrayList<Artikel>>();
         startVoorraad=new HashMap<String, Integer>();
         prijzen=new HashMap<String,Double>();
@@ -73,10 +74,12 @@ public class KantineAanbod {
     /**
      * Publieke methode om een artikel via naam van de stapel te pakken.
      * Retouneert null als artikel niet bestaat of niet op voorraad is.
-     * @param naam (van artikel)
+     * @param productnaam (van artikel)
      * @return artikel (of null)
      */
     public Artikel getArtikel(String productnaam) {
         return getArtikel(getArrayList(productnaam));
     }
+
+
 }

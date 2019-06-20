@@ -7,13 +7,13 @@ import java.util.Iterator;
 public class Kassa {
     private KassaRij rij;
     private int artikelCount;
-    private BigDecimal totaalWaarde;
+    private Double totaalWaarde;
     /**
      * Constructor
      */
     public Kassa(KassaRij kassarij) {
         this.rij = kassarij;
-        totaalWaarde = new BigDecimal(0.00);
+        totaalWaarde = 0.00;
     }
 
     /**
@@ -25,10 +25,40 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        Iterator<Artikel> i = klant.getArtikelen();
-        while (i.hasNext()){
-            totaalWaarde = totaalWaarde.add(i.next().getPrijs());
+        Iterator<Artikel> artikelen = klant.getArtikelen();
+        Persoon klantPersoon = klant.getKlant();
+        Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
+        double totaalPrijs = 0;
+
+        //bereken totaalprijs
+        while (artikelen.hasNext()){
+            totaalPrijs += artikelen.next().getPrijs();
+        }
+
+        //als de klant een kortingskaart heeft bereken de nieuwe prijs
+        if(klantPersoon instanceof KortingskaartHouder){
+            double korting;
+            korting = totaalPrijs * (((KortingskaartHouder) klantPersoon).getKortingsPercentage() / 100);
+            if(((KortingskaartHouder) klantPersoon).hasMaximum() && korting > ((KortingskaartHouder) klantPersoon).getMaximum()){
+                korting = ((KortingskaartHouder) klantPersoon).getMaximum();
+            }
+            totaalPrijs -= korting;
+
+            //tijdelijke print om te testen
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " heeft "
+                    + ((KortingskaartHouder) klantPersoon).getKortingsPercentage() + "% korting en bespaart " + korting + "€");
+        }
+
+        //probeer te betalen, zoniet gooi een exception die in KantineSimulatie wordt opgevangen
+        try {
+            betaalWijze.betaal(totaalPrijs);
+            totaalWaarde += totaalPrijs;
             artikelCount++;
+            //tijdelijke prints om te testen
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " betaalde " + totaalPrijs + "€ en heeft nu " + betaalWijze.getSaldo() + "€ over");
+        }
+        catch (TeWeinigGeldException e){
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " had niet genoeg geld om te betalen");
         }
     }
 
@@ -49,7 +79,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public BigDecimal hoeveelheidGeldInKassa() {
+    public Double hoeveelheidGeldInKassa() {
         return totaalWaarde;
     }
 
@@ -58,7 +88,7 @@ public class Kassa {
      * de totale hoeveelheid geld in de kassa.
      */
     public void resetKassa() {
-        totaalWaarde = new BigDecimal(0.00);
+        totaalWaarde = 0.00;
         artikelCount = 0;
     }
 }
