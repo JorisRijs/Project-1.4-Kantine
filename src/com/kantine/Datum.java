@@ -1,5 +1,7 @@
 package src.com.kantine;
 
+import java.util.Random;
+
 public class Datum {
 
 	private int dag;
@@ -7,9 +9,18 @@ public class Datum {
 	private int jaar;
 
 	public Datum(){
-        this.dag = 0;
-        this.maand = 0;
-        this.jaar = 0;
+	    int randDag = 0;
+	    int randMaand = 0;
+	    int randJaar = 0;
+
+	    while(!bestaatDatum(randDag, randMaand, randJaar)){
+            randDag = new Random().nextInt(30) + 1;
+            randMaand = new Random().nextInt(11) + 1;
+            randJaar = new Random().nextInt(50) + 1950;
+        }
+        this.dag = randDag;
+        this.maand = randMaand;
+        this.jaar = randJaar;
     }
 
     public Datum(int dag, int maand, int jaar){

@@ -55,6 +55,7 @@ public class Kassa {
             totaalWaarde += totaalPrijs;
             artikelCount++;
             //tijdelijke prints om te testen
+            System.out.println("Geslacht: " + klantPersoon.getGeslacht() + " geboortedatum: " + klantPersoon.getGeboorteDatum());
             System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " betaalde " + totaalPrijs + "€ en heeft nu " + betaalWijze.getSaldo() + "€ over");
         }
         catch (TeWeinigGeldException e){

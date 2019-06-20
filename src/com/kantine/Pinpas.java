@@ -2,7 +2,7 @@ package src.com.kantine;
 
 public class Pinpas extends Betaalwijze {
 
-    private double creditLimit;
+    private double creditLimit = 0;
 
     /**
      * Methode om creditLimit in te stellen
@@ -18,7 +18,7 @@ public class Pinpas extends Betaalwijze {
      * @return boolean of er genoeg saldo is
      */
     public void betaal(double amount) throws TeWeinigGeldException{
-        if(getSaldo() >= amount){
+        if(getSaldo()-creditLimit  >= amount){
             changeSaldo(-amount);
         } else {
             throw new TeWeinigGeldException();

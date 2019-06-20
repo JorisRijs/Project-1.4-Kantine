@@ -164,8 +164,15 @@ public class KantineSimulatie {
                 klant.getKlant().setBetaalwijze(betaalWijze);
 
                 //Geef de klant wat gegevens
-                klant.getKlant().setVoornaam(Namen.getRandomVoorNaam("man"));
+                if(random.nextInt(2) == 1){
+                    klant.getKlant().setVoornaam(Namen.getRandomVoorNaam("man"));
+                    klant.getKlant().setGeslacht('M');
+                } else {
+                    klant.getKlant().setVoornaam(Namen.getRandomVoorNaam("vrouw"));
+                    klant.getKlant().setGeslacht('V');
+                }
                 klant.getKlant().setAchternaam(Namen.getRandomAchterNaam());
+                klant.getKlant().setGeboorteDatum(new Datum ());
 
                 //pak een random aantal artikelen tussen MIN_ARTIKELEN_PER_PERSOON en MAX_ARTIKELEN_PER_PERSOON
                 int artikelCount = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
