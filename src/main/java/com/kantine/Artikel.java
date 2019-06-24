@@ -1,9 +1,10 @@
 package com.kantine;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Artikel {
+public class Artikel implements Serializable {
     private String naam;
     private Double prijs;
 

@@ -15,7 +15,7 @@ public class FactuurRegel implements Serializable {
     @JoinColumn(name = "factuur_id", nullable = false)
     private Factuur factuur;
 
-    @Transient
+    @Column(name="artikel")
     private Artikel artikel;
 
     public FactuurRegel() {}
