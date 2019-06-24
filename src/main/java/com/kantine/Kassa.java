@@ -20,12 +20,14 @@ public class Kassa {
     public static final String ANSI_CYAN = "\u001B[36m";
 
     private EntityManager manager;
+    private KantineSimulatie KS;
 
     /**
      * Constructor
      */
-    public Kassa(KassaRij kassarij, EntityManager em) {
+    public Kassa(KassaRij kassarij, EntityManager em, KantineSimulatie KS) {
         this.rij = kassarij;
+        this.KS = KS;
         totaalWaarde = 0.00;
         manager = em;
     }
@@ -39,7 +41,7 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        LocalDate datum = LocalDate.of(2019, 5, 16);
+        LocalDate datum = LocalDate.of(2019, 5, KS.getDag());
         Persoon klantPersoon = klant.getKlant();
         Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
 

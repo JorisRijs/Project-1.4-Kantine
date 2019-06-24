@@ -4,6 +4,7 @@ import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class KantineSimulatie {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
@@ -20,6 +21,9 @@ public class KantineSimulatie {
 
     // random generator
     private Random random;
+
+    // welke dag het is
+    private int dag;
 
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN = 4;
@@ -67,7 +71,7 @@ public class KantineSimulatie {
      */
     public KantineSimulatie(int dagen) {
         manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        kantine = new Kantine(manager);
+        kantine = new Kantine(manager, this);
         random = new Random();
         int[] hoeveelheden = getRandomArray(
                 AANTAL_ARTIKELEN,
@@ -113,6 +117,13 @@ public class KantineSimulatie {
     }
 
     /**
+     * @return de huidige dag in de simulatie
+     */
+    public int getDag() {
+        return dag;
+    }
+
+    /**
      * Methode om op basis van een array van indexen voor de array
      * artikelnamen de bijhorende array van artikelnamen te maken
      *
@@ -136,7 +147,9 @@ public class KantineSimulatie {
      */
     public void simuleer(int dagen) {
         //simuleer een bepaald aantal dagen
+        dag = 0;
         for (int i=0; i<dagen; i++){
+            dag++;
             //Bedenk hoeveel klanten deze dag binnen komen
             int customerCount = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
 
@@ -210,25 +223,45 @@ public class KantineSimulatie {
             // reset de kassa voor de volgende dag
             kantine.getKassa().resetKassa();
         }
-        //print totalen
-        System.out.println(ANSI_GREEN + "+-----------------------Getallen----------------------+");
+
+        //queries om getallen uit db te halen
+        Query query = manager.createQuery(
+                "SELECT SUM(totaal) FROM Factuur");
+        double qTotaal = (Double) query.getSingleResult();
+        query = manager.createQuery(
+                "SELECT SUM(korting) FROM Factuur");
+        double qKorting = (Double) query.getSingleResult();
+        query = manager.createQuery(
+                "SELECT AVG(korting) FROM Factuur");
+        double qAvgKorting = (Double) query.getSingleResult();
+        query = manager.createQuery(
+                "SELECT AVG(totaal) FROM Factuur");
+        double qAvgTotaal = (Double) query.getSingleResult();
+        query = manager.createQuery(
+                "SELECT f FROM Factuur f ORDER BY totaal DESC").setMaxResults(3);
+        List<Object[]> resultaat = query.getResultList();
+
+        //print getallen
+        System.out.println(ANSI_GREEN + "+-----------------------------Getallen----------------------------+");
+        System.out.println("|Totale omzet: " + qTotaal);
+        System.out.println("|Totale uitgegeven korting: " + qKorting);
+        System.out.println("|");
         System.out.println("|Gemiddelde omzet per dag : " + Administratie.berekenGemiddeldeOmzet(omzetten));
         System.out.println("|Gemiddelde verkochte artikelen per dag : " + Administratie.berekenGemiddeldAantal(aantallen));
         System.out.println("|Gemiddelde hoeveelheid klanten per dag : " + Administratie.berekenGemiddeldAantal(klanten));
+        System.out.println("|Gemiddeld bedrag per factuur: " + qAvgTotaal);
+        System.out.println("|Gemiddeld uitgegeven korting per factuur: " + qAvgKorting);
         System.out.println("| ");
         double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
         for(int i =0; i < dagOmzetten.length; i++) {
             System.out.println("|Gemiddelde omzet op dag " + i + " : " + dagOmzetten[i]);
         }
-        System.out.println("+-----------------------------------------------------+" + ANSI_RESET);
-    }
-
-    public void runVoorbeeld(){
-        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        //een transactie
-        manager.close();
-        ENTITY_MANAGER_FACTORY.close();
-
+        System.out.println("|");
+        System.out.println("|De drie hoogste facturen:");
+        for(Object factuur : resultaat){
+            System.out.println("|" + factuur);
+        }
+        System.out.println("+-----------------------------------------------------------------+" + ANSI_RESET);
     }
 
     public static void main(String[] args){

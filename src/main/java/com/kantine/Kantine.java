@@ -9,8 +9,6 @@ public class Kantine {
     private KassaRij kassarij;
     private KantineAanbod kantineaanbod;
 
-    private EntityManager manager;
-
     String[] artikels = new String[] {"appel", "babaan", "burger", "Patat", "Pindakaas"};
     Double[] prijzen = {2.99, 1.99, 10.99, 15.99, 14.99};
     int[] aantalen = {5, 13, 6, 2, 50};
@@ -18,29 +16,12 @@ public class Kantine {
     /**
      * Constructor
      */
-    public Kantine(EntityManager em) {
+    public Kantine(EntityManager em, KantineSimulatie KS) {
         kassarij = new KassaRij();
-        kassa = new Kassa(kassarij, em);
-        manager = em;
+        kassa = new Kassa(kassarij, em, KS);
         kantineaanbod = new KantineAanbod(artikels, prijzen, aantalen);
     }
 
-    /**
-     * In deze methode wordt een Persoon en Dienblad gemaakt
-     * en aan elkaar gekoppeld. Maak twee Artikelen aan
-     * en plaats deze op het dienblad. Tenslotte sluit de
-     * Persoon zich aan bij de rij voor de kassa.
-     */
- /*   public void loopPakSluitAan() {
-        Persoon persoon = new Persoon();
-        Dienblad dienblad = new Dienblad(persoon);
-        Artikel artikel = new Artikel("Appel", 4.99);
-        dienblad.voegToe(artikel);
-        Artikel artikel2 = new Artikel("Banaan", 9.99);
-        dienblad.voegToe(artikel2);
-        kassarij.sluitAchteraan(dienblad);
-    }
-*/
     /**
      * In deze methode kiest een Persoon met een dienblad
      * de artikelen in artikelnamen.
