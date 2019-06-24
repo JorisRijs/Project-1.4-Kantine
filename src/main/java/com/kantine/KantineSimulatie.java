@@ -240,6 +240,12 @@ public class KantineSimulatie {
         query = manager.createQuery(
                 "SELECT f FROM Factuur f ORDER BY totaal DESC").setMaxResults(3);
         List<Object[]> resultaat1 = query.getResultList();
+        query = manager.createQuery(
+                "SELECT artikelNaam, count(*) FROM FactuurRegel f GROUP BY artikelNaam ORDER BY count(*) DESC").setMaxResults(3);
+        List<Object[]> resultaat2= query.getResultList();
+        query = manager.createQuery(
+                "SELECT artikelNaam, sum(artikelPrijs) FROM FactuurRegel f GROUP BY artikelNaam ORDER BY sum(artikelPrijs) DESC").setMaxResults(3);
+        List<Object[]> resultaat3= query.getResultList();
 
         //print getallen
         System.out.println(ANSI_GREEN + "+-------------------------------------------Getallen------------------------------------------+");
@@ -255,6 +261,20 @@ public class KantineSimulatie {
         double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
         for(int i =0; i < dagOmzetten.length; i++) {
             System.out.println("|Gemiddelde omzet op dag " + i + " : " + dagOmzetten[i]);
+        }
+        System.out.println("|");
+        System.out.println("|De drie meest populaire producten");
+        int i = 0;
+        for(Object[] artikel : resultaat2){
+            i++;
+            System.out.println("|   " + i + ". " + artikel[0] + ": " + artikel[1]);
+        }
+        System.out.println("|");
+        System.out.println("|De drie producten met meeste omzet");
+        i = 0;
+        for(Object[] artikel : resultaat3){
+            i++;
+            System.out.println("|   " + i + ". " + artikel[0] + ": " + artikel[1]);
         }
         System.out.println("|");
         System.out.println("|De drie hoogste facturen:");
