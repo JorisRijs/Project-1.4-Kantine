@@ -68,6 +68,9 @@ public class Kassa {
             transaction = manager.getTransaction();
             transaction.begin();
             manager.persist(factuur);
+            for(FactuurRegel regel : factuur.getRegels()){
+                manager.persist(regel);
+            }
             transaction.commit();
         }
         catch (TeWeinigGeldException e){

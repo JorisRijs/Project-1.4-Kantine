@@ -192,7 +192,7 @@ public class KantineSimulatie {
                 } else {
                     betaalWijze = new Pinpas();
                 }
-                betaalWijze.setSaldo(8); //alle klanten hebben voor nu 8 euro per dag
+                betaalWijze.setSaldo(getRandomValue(6,12)); //alle klanten hebben voor nu 6-12
                 klant.getKlant().setBetaalwijze(betaalWijze);
 
                 //Geef de klant wat gegevens
@@ -239,10 +239,10 @@ public class KantineSimulatie {
         double qAvgTotaal = (Double) query.getSingleResult();
         query = manager.createQuery(
                 "SELECT f FROM Factuur f ORDER BY totaal DESC").setMaxResults(3);
-        List<Object[]> resultaat = query.getResultList();
+        List<Object[]> resultaat1 = query.getResultList();
 
         //print getallen
-        System.out.println(ANSI_GREEN + "+-----------------------------Getallen----------------------------+");
+        System.out.println(ANSI_GREEN + "+-------------------------------------------Getallen------------------------------------------+");
         System.out.println("|Totale omzet: " + qTotaal);
         System.out.println("|Totale uitgegeven korting: " + qKorting);
         System.out.println("|");
@@ -258,10 +258,10 @@ public class KantineSimulatie {
         }
         System.out.println("|");
         System.out.println("|De drie hoogste facturen:");
-        for(Object factuur : resultaat){
+        for(Object factuur : resultaat1){
             System.out.println("|" + factuur);
         }
-        System.out.println("+-----------------------------------------------------------------+" + ANSI_RESET);
+        System.out.println("+---------------------------------------------------------------------------------------------+" + ANSI_RESET);
     }
 
     public static void main(String[] args){

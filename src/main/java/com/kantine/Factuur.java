@@ -3,6 +3,7 @@ package com.kantine;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 @Entity
@@ -25,6 +26,9 @@ public class Factuur implements Serializable {
     @Column(name = "factuur_artikel_count", nullable = false)
     private int artikelCount;
 
+    @Transient
+    private ArrayList<FactuurRegel> regels = new ArrayList<>();
+
     public Factuur(){
         totaal = 0;
         korting = 0;
@@ -38,7 +42,7 @@ public class Factuur implements Serializable {
     }
 
     /**
-     *
+     * Bepaal totaalprijs en korting
      *
      * @param klant
      */
@@ -49,10 +53,13 @@ public class Factuur implements Serializable {
 
         //bepaal totaalprijs zonder korting
         while (artikelen.hasNext()){
-            totaal += artikelen.next().getPrijs();
+            Artikel artikel = artikelen.next();
+            regels.add(new FactuurRegel(this, artikel));
+            totaal += artikel.getPrijs();
             artikelCount++;
         }
 
+        //bepaal korting en haal het van de totaalprijs af
         if(klantPersoon instanceof KortingskaartHouder){
             korting = totaal * (((KortingskaartHouder) klantPersoon).getKortingsPercentage() / 100);
             if(((KortingskaartHouder) klantPersoon).hasMaximum() && korting > ((KortingskaartHouder) klantPersoon).getMaximum()){
@@ -84,9 +91,22 @@ public class Factuur implements Serializable {
     }
 
     /**
+     * @return alle factuurregels
+     */
+    public ArrayList<FactuurRegel> getRegels() {
+        return regels;
+    }
+
+    /**
      * @return een printbare versie van de factuur
      */
     public String toString(){
-        return "Datum: " + datum + " Totaal: " + totaal + " korting: " + korting;
+        String stringRegels = "";
+        for(FactuurRegel regel : regels){
+            stringRegels += regel.toString();
+            stringRegels += "\n|";
+        }
+        return "Id: " + Id + " datum: " + datum + " totaal: " + totaal + " korting: " + korting + " hoeveelheid artikelen: " + artikelCount
+                + "\n|" + stringRegels;
     }
 }
