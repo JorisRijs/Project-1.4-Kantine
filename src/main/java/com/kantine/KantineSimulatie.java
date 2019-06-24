@@ -25,15 +25,15 @@ public class KantineSimulatie {
     // welke dag het is
     private int dag;
 
-    // aantal artikelen
-    private static final int AANTAL_ARTIKELEN = 4;
-
     // artikelen
     private static final String[] artikelnamen = new String[]
-            {"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap"};
+            {"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap", "Appel", "Redbull", "Frikandelbroodje"};
 
     // prijzen
-    private static Double[] artikelprijzen = new Double[]{1.00, 3.10, 2.00, 1.65};
+    private static Double[] artikelprijzen = new Double[]{1.00, 3.00, 2.00, 1.65, 0.80, 2.25, 1.50};
+
+    // aantal artikelen
+    private static final int AANTAL_ARTIKELEN = artikelprijzen.length;
 
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10000;
@@ -201,7 +201,7 @@ public class KantineSimulatie {
 
                 //pak een random aantal artikelen tussen MIN_ARTIKELEN_PER_PERSOON en MAX_ARTIKELEN_PER_PERSOON
                 int artikelCount = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
-                int[] artikelIndexen = getRandomArray(artikelCount, 0, artikelCount-1);
+                int[] artikelIndexen = getRandomArray(artikelCount, 0, AANTAL_ARTIKELEN-1);
                 String[] artikelen = geefArtikelNamen(artikelIndexen);
 
                 //zet de klant met zijn artikelen in de rij
