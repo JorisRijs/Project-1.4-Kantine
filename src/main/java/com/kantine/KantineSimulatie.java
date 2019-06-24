@@ -56,15 +56,18 @@ public class KantineSimulatie {
     private static final String[] docenten = new String[]
             {"TATH", "VEGT", "HOEM", "KNJA", "BIKO", "MESM", "BRUM"};
 
+    //statistiek getallen
     double[] omzetten = new double[DAGEN];
     int[] aantallen = new int[DAGEN];
+    int[] klanten = new int[DAGEN];
 
     /**
      * Constructor
      *
      */
-    public KantineSimulatie() {
-        kantine = new Kantine();
+    public KantineSimulatie(int dagen) {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        kantine = new Kantine(manager);
         random = new Random();
         int[] hoeveelheden = getRandomArray(
                 AANTAL_ARTIKELEN,
@@ -74,6 +77,9 @@ public class KantineSimulatie {
                 artikelnamen, artikelprijzen, hoeveelheden);
 
         kantine.setKantineAanbod(kantineaanbod);
+        simuleer(dagen);
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
     }
 
     /**
@@ -192,6 +198,7 @@ public class KantineSimulatie {
             kantine.verwerkRijVoorKassa();
             omzetten[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             aantallen[i] = kantine.getKassa().aantalArtikelen();
+            klanten[i] = customerCount;
 
             //print de dagtotalen en hoeveel personen binnen zijn gekomen
             System.out.println(ANSI_YELLOW + "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
@@ -204,11 +211,12 @@ public class KantineSimulatie {
             kantine.getKassa().resetKassa();
         }
         //print totalen
-        double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
         System.out.println(ANSI_GREEN + "+-----------------------Getallen----------------------+");
         System.out.println("|Gemiddelde omzet per dag : " + Administratie.berekenGemiddeldeOmzet(omzetten));
         System.out.println("|Gemiddelde verkochte artikelen per dag : " + Administratie.berekenGemiddeldAantal(aantallen));
+        System.out.println("|Gemiddelde hoeveelheid klanten per dag : " + Administratie.berekenGemiddeldAantal(klanten));
         System.out.println("| ");
+        double[] dagOmzetten = Administratie.berekenDagOmzet(omzetten);
         for(int i =0; i < dagOmzetten.length; i++) {
             System.out.println("|Gemiddelde omzet op dag " + i + " : " + dagOmzetten[i]);
         }
@@ -232,7 +240,6 @@ public class KantineSimulatie {
             dagen = Integer.parseInt(args[0]);
             DAGEN = dagen;
         }
-        KantineSimulatie KS = new KantineSimulatie();
-        KS.simuleer(dagen);
+        KantineSimulatie KS = new KantineSimulatie(dagen);
     }
 }

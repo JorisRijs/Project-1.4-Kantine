@@ -1,15 +1,15 @@
 package com.kantine;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Iterator;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import java.time.LocalDate;
 
 public class Kassa {
     //kassa rij
     private KassaRij rij;
 
     //hoeveelheid artikelen verkocht sinds laatste reset
-    private int artikelCount;
+    private int totaalArtikelCount;
 
     //hoeveelheid geld in de kassa
     private Double totaalWaarde;
@@ -19,12 +19,15 @@ public class Kassa {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_CYAN = "\u001B[36m";
 
+    private EntityManager manager;
+
     /**
      * Constructor
      */
-    public Kassa(KassaRij kassarij) {
+    public Kassa(KassaRij kassarij, EntityManager em) {
         this.rij = kassarij;
         totaalWaarde = 0.00;
+        manager = em;
     }
 
     /**
@@ -36,43 +39,46 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        Iterator<Artikel> artikelen = klant.getArtikelen();
+        LocalDate datum = LocalDate.of(2019, 5, 16);
         Persoon klantPersoon = klant.getKlant();
         Betaalwijze betaalWijze = klantPersoon.getBetaalwijze();
-        double totaalPrijs = 0;
-        //hoeveelheid artikelen op dienblad
-        int klantArtikelCount = 0;
 
-        //bereken totaalprijs
-        while (artikelen.hasNext()){
-            totaalPrijs += artikelen.next().getPrijs();
-            klantArtikelCount++;
-        }
+        //maakt een factuur aan en haal de waarden op
+        Factuur factuur = new Factuur(klant, datum);
+        double totaal = factuur.getTotaal();
+        double korting = factuur.getKorting();
 
-        //als de klant een kortingskaart heeft bereken de nieuwe prijs
-        if(klantPersoon instanceof KortingskaartHouder){
-            double korting;
-            korting = totaalPrijs * (((KortingskaartHouder) klantPersoon).getKortingsPercentage() / 100);
-            if(((KortingskaartHouder) klantPersoon).hasMaximum() && korting > ((KortingskaartHouder) klantPersoon).getMaximum()){
-                korting = ((KortingskaartHouder) klantPersoon).getMaximum();
-            }
-            totaalPrijs -= korting;
-
-            //tijdelijke print om te testen
+        //Als de klant korting heeft print dit op het scherm
+        if(factuur.getKorting() != 0){
             System.out.println(ANSI_CYAN + klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " heeft "
                     + ((KortingskaartHouder) klantPersoon).getKortingsPercentage() + "% korting en bespaart " + korting + "€" + ANSI_RESET);
         }
 
-        //probeer te betalen, zoniet gooi een exception die in KantineSimulatie wordt opgevangen
+        //probeer te betalen, bij TeWeinigGeldException print dat de klant niet genoeg geld heeft om te betalen
+        EntityTransaction transaction = null;
         try {
-            betaalWijze.betaal(totaalPrijs);
-            totaalWaarde += totaalPrijs;
-            artikelCount += klantArtikelCount;
-            //tijdelijke prints om te testen
-            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " betaalde " + totaalPrijs + "€ en heeft nu " + betaalWijze.getSaldo() + "€ over");
+            betaalWijze.betaal(totaal);
+            totaalWaarde += totaal;
+            totaalArtikelCount += factuur.getArtikelCount();
+            System.out.println(klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " betaalde " + totaal + "€ en heeft nu " + betaalWijze.getSaldo() + "€ over");
+
+            //probeer in de database te zetten
+            transaction = manager.getTransaction();
+            transaction.begin();
+            manager.persist(factuur);
+            transaction.commit();
         }
         catch (TeWeinigGeldException e){
+            if(transaction != null){
+                transaction.rollback();
+            }
             System.out.println(ANSI_RED + klantPersoon.getVoornaam() + " " + klantPersoon.getAchternaam() + " had niet genoeg geld om te betalen" + ANSI_RESET);
+        }
+        catch (Exception e) {
+            if(transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
         }
     }
 
@@ -83,7 +89,7 @@ public class Kassa {
      * @return aantal artikelen
      */
     public int aantalArtikelen() {
-        return artikelCount;
+        return totaalArtikelCount;
     }
 
     /**
@@ -103,6 +109,6 @@ public class Kassa {
      */
     public void resetKassa() {
         totaalWaarde = 0.00;
-        artikelCount = 0;
+        totaalArtikelCount = 0;
     }
 }

@@ -1,5 +1,6 @@
 package com.kantine;
 
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -8,6 +9,8 @@ public class Kantine {
     private KassaRij kassarij;
     private KantineAanbod kantineaanbod;
 
+    private EntityManager manager;
+
     String[] artikels = new String[] {"appel", "babaan", "burger", "Patat", "Pindakaas"};
     Double[] prijzen = {2.99, 1.99, 10.99, 15.99, 14.99};
     int[] aantalen = {5, 13, 6, 2, 50};
@@ -15,9 +18,10 @@ public class Kantine {
     /**
      * Constructor
      */
-    public Kantine() {
+    public Kantine(EntityManager em) {
         kassarij = new KassaRij();
-        kassa = new Kassa(kassarij);
+        kassa = new Kassa(kassarij, em);
+        manager = em;
         kantineaanbod = new KantineAanbod(artikels, prijzen, aantalen);
     }
 
